@@ -24,7 +24,7 @@
 
 
 # Tasks
-1. Get text / user input to appear on cli
+1. Get text / user input to appear on cli ✅
 2. Implement functionality of calculator
   A. Application will run until user exits
     1. Implement `while` loop that the app runs off of, condition is fulfilled when specific input is made (`q`)

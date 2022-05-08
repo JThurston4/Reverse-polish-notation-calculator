@@ -1,4 +1,4 @@
-const sum = require('./index');
+const sum = require('./sum');
 
 describe('verifying test setup', () => {
   it('should return the sum of two numbers', () => {
