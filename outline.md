@@ -26,8 +26,8 @@
 # Tasks
 1. Get text / user input to appear on cli ✅
 2. Implement functionality of calculator
-  A. Application will run until user exits
-    1. Implement `while` loop that the app runs off of, condition is fulfilled when specific input is made (`q`)
+  A. Application will run until user exits ✅
+    1. Implement `while` loop that the app runs off of, condition is fulfilled when specific input is made (`q`) ✅
   B. Calculator seems to work using a stack that resolves the two items on top when an operation is made
     1. Create a `Stack` class
     2. Create a `Calculator` class that integrates `Stack` 
