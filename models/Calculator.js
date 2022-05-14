@@ -7,13 +7,20 @@ class Calculator extends Stack {
     this.operations = ['+', '-', '/', '*'];
   }
 
+  convertBadArgs(item) {
+    if (item === undefined) {
+      return 0;
+    }
+    return item;
+  }
+
   calculate(operation) {
-    const secondArg = this.pop();
-    const firstArg = this.pop();
-    
+    const secondArg = this.convertBadArgs(this.pop());
+    const firstArg = this.convertBadArgs(this.pop());
+
     const answer = Evaluator.eval(`${firstArg} ${operation} ${secondArg}`);
-    if (answer === "Infinity" ) { //result of divide by 0
-      throw new Error('Error :: Divide by 0')
+    if (answer === "Infinity" || isNaN(answer)) { //result of divide by 0
+      throw new Error('Divide by 0')
     }
     this.push(answer);
     console.log(answer);

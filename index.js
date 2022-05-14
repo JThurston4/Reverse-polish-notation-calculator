@@ -1,5 +1,6 @@
 const readlineSync = require('readline-sync');
-const {handleInput} = require('./calculator');
+const Calculator = require('./models/Calculator');
+let calculator = new Calculator();
 
 let active = true;
 
@@ -8,6 +9,6 @@ while(active) {
   if (input.toLowerCase() === 'q') {
     active = false;
   } else {
-    handleInput(input)
+    calculator.handleInput(input);
   }
 };

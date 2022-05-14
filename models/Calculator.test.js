@@ -85,14 +85,34 @@ describe('Math Evaluation tests', () => {
     expect(calculator.count).toEqual(1);
     expect(calculator.peek()).toBe(3);
   });
+});
 
+describe(`testing edge cases`, () => {
   it('should not be able to divide by 0', () => {
     let calculator = new Calculator();
     calculator.handleInput(9);
     calculator.handleInput(0);
-    expect(() => { calculator.handleInput('/')}).toThrow('Error :: Divide by 0');
+    expect(() => { calculator.handleInput('/')}).toThrow('Divide by 0');
   });
-});
+
+  it('should handle operations when stack count is less than 2', () => {
+    let calculator = new Calculator();
+    calculator.handleInput(3);
+    expect(calculator.handleInput('+')).toEqual(3);
+    expect(calculator.count).toEqual(1);
+    expect(calculator.peek()).toEqual(3);
+
+  });
+  
+  it('should handle an invalid input', () => {
+    let calculator = new Calculator();
+    calculator.handleInput(3);
+    calculator.handleInput(9);
+    expect(calculator.handleInput('>')).toEqual('invalid');
+    expect(calculator.handleInput('+')).toEqual(12);
+  });
+
+})
 
 describe(`testing examples`, () => {
   it(`should handle return the correct answer`, () => {
