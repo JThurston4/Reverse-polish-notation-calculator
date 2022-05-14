@@ -30,21 +30,111 @@ describe('Math Evaluation tests', () => {
     expect(calculator.peek()).toBe(27);
   });
 
-  // it('should correctly subtract 2 numbers', () => {
-  //   expect(calculator([24, 17], '-')).toEqual(7);
-  //   expect(calculator([2, 2], '-')).not.toEqual(5)
-  // });
+  it('should correctly subtract 2 numbers', () => {
+    let calculator = new Calculator();
+    calculator.handleInput(24);
+    calculator.handleInput(17);
+    expect(calculator.handleInput('-')).toEqual(7);
+    expect(calculator.count).toEqual(1);
+    expect(calculator.peek()).toBe(7);
 
-  // it('should correctly multiply 2 numbers', () => {
-  //   expect(calculator([9, 7], '*')).toEqual(63);
-  //   expect(calculator([2, 2], '*')).not.toEqual(5)
-  // });
+    calculator.handleInput(50);
+    expect(calculator.handleInput('-')).toEqual(-43);
 
-  // it('should correctly divide 2 numbers', () => {
-  //   expect(calculator([15, 5], '/')).toEqual(3);
-  //   expect(calculator([2, 2], '/')).not.toEqual(5)
-  // });
+    calculator.handleInput(-1);
+    calculator.handleInput(-4);
+    expect(calculator.handleInput('-')).toEqual(3);
+    expect(calculator.count).toEqual(2);
+    expect(calculator.peek()).toBe(3);
 
+    expect(calculator.handleInput('-')).toEqual(-46);
+    expect(calculator.count).toEqual(1);
+    expect(calculator.peek()).toBe(-46);
+  });
+
+  it('should correctly multiply 2 numbers', () => {
+    let calculator = new Calculator();
+    calculator.handleInput(9);
+    calculator.handleInput(7);
+    expect(calculator.handleInput('*')).toEqual(63);
+
+    calculator.handleInput(1);
+    calculator.handleInput(2);
+    expect(calculator.handleInput('*')).toEqual(2);
+    expect(calculator.count).toEqual(2);
+    expect(calculator.peek()).toBe(2);
+    
+    expect(calculator.handleInput('*')).toEqual(126);
+    expect(calculator.count).toEqual(1);
+    expect(calculator.peek()).toBe(126);
+  });
+
+  it('should correctly divide 2 numbers', () => {
+    let calculator = new Calculator();
+    calculator.handleInput(54);
+    calculator.handleInput(6);
+    expect(calculator.handleInput('/')).toEqual(9);
+
+    calculator.handleInput(15);
+    calculator.handleInput(5);
+    expect(calculator.handleInput('/')).toEqual(3);
+    expect(calculator.count).toEqual(2);
+    expect(calculator.peek()).toBe(3);
+
+    expect(calculator.handleInput('/')).toEqual(3);
+    expect(calculator.count).toEqual(1);
+    expect(calculator.peek()).toBe(3);
+  });
+
+  it('should not be able to divide by 0', () => {
+    let calculator = new Calculator();
+    calculator.handleInput(9);
+    calculator.handleInput(0);
+    expect(() => { calculator.handleInput('/')}).toThrow('Error :: Divide by 0');
+  });
+});
+
+describe(`testing examples`, () => {
+  it(`should handle return the correct answer`, () => {
+
+    let calculator = new Calculator();
+    calculator.handleInput(5);
+    calculator.handleInput(5);
+    calculator.handleInput(5);
+    calculator.handleInput(8);
+    expect(calculator.count).toEqual(4);
+    expect(calculator.handleInput('+')).toEqual(13);
+    expect(calculator.count).toEqual(3);
+    
+    expect(calculator.handleInput('+')).toEqual(18);
+    expect(calculator.count).toEqual(2);
+    expect(calculator.handleInput('-')).toEqual(-13);
+    expect(calculator.count).toEqual(1);
+  });
+
+  it(`should handle return the correct answer`, () => {
+    let calculator = new Calculator();
+    calculator.handleInput(-3);
+    calculator.handleInput(-2);
+    expect(calculator.count).toEqual(2);
+    expect(calculator.handleInput('*')).toEqual(6);
+    expect(calculator.count).toEqual(1);
+    
+    calculator.handleInput(5);
+    expect(calculator.handleInput('+')).toEqual(11);
+  });
+
+  it(`should handle return the correct answer`, () => {
+    let calculator = new Calculator();
+    calculator.handleInput(5);
+    calculator.handleInput(9);
+    calculator.handleInput(1);
+    expect(calculator.count).toEqual(3);
+    expect(calculator.handleInput('-')).toEqual(8);
+    expect(calculator.handleInput('/')).toEqual(.625);
+    expect(calculator.count).toEqual(1);
+    
+  });
 });
 
 describe('Utility tests', () => {
@@ -60,13 +150,3 @@ describe('Utility tests', () => {
     expect(calculator.isOperation(3)).toBe(false);
   });
 });
-
-// describe('integration tests', () => {
-//   it('should route inputs to the correct destination', () => {
-//     expect(handleInput(`3`)).toEqual(['3']);
-//     expect(handleInput(`17`)).toEqual(['3', '17']);
-//     expect(handleInput('(')).toEqual('invalid');
-//     expect(handleInput('4')).toEqual(['3', '17', '4']);
-//     expect(handleInput('+')).toEqual(21);
-//   })
-// })

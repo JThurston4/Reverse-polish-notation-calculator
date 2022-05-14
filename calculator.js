@@ -1,4 +1,4 @@
-const {evaluate} = require('mathjs');
+const Evaluator = require('math-expression-evaluator');
 
 const operations = ['+', '-', '/', '*'];
 
@@ -9,10 +9,10 @@ function isOperation(input) {
 }
 
 function calculator (inputs, operation) {
-  const answer = evaluate(`${inputs[inputs.length-2]} ${operation} ${inputs[inputs.length-1]}`)
+  const answer = Evaluator.eval(`${inputs[inputs.length-2]} ${operation} ${inputs[inputs.length-1]}`)
   console.log(answer);
   return answer;
-}
+}d
 
 function handleInput(input) {
   if (!isOperation(input) && isNaN(Number(input))) {
