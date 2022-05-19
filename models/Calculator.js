@@ -4,7 +4,7 @@ const Stack = require('./Stack');
 class Calculator extends Stack {
   constructor() {
     super();
-    this.operations = ['+', '-', '/', '*'];
+    this.operations = ['+', '-', '/', '*', '^'];
   }
 
   convertBadArgs(item) {
@@ -18,10 +18,13 @@ class Calculator extends Stack {
     const secondArg = this.convertBadArgs(this.pop());
     const firstArg = this.convertBadArgs(this.pop());
 
-    const answer = Evaluator.eval(`${firstArg} ${operation} ${secondArg}`);
+    let answer = Evaluator.eval(`${firstArg} ${operation} ${secondArg}`);
     if (answer === "Infinity" || isNaN(answer)) { //result of divide by 0
-      throw new Error('Divide by 0')
+      throw new Error('Divide by 0');
     }
+
+    answer = Number(Number.parseFloat(answer).toFixed(3));
+
     this.push(answer);
     console.log(answer);
     return answer;

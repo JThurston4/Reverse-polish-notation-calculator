@@ -155,6 +155,14 @@ describe(`testing examples`, () => {
     expect(calculator.count).toEqual(1);
     
   });
+
+  it(`should add decimals correctly`, () => {
+    let calculator = new Calculator();
+    calculator.handleInput(3.33);
+    calculator.handleInput(16.671);
+    expect(calculator.handleInput('+')).toEqual(20.001);
+    
+  });
 });
 
 describe('Utility tests', () => {
